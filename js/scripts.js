@@ -1,3 +1,33 @@
+// The modal Js
+
+// Getting modal
+let modal = document.getElementById('startModal');
+
+// Get the button that closes the modal
+let modalBtn = document.getElementById('startButton');
+
+// When page loads the modal pops in
+document.addEventListener("DOMContentLoaded", function(event) {
+    modal.style.display = "block";
+  });
+
+modalBtn.onclick = function(){
+	modal.style.display = "none";
+	// Starting the game with all new refreshed hard coded boxes shuffled and resting
+	startGame();
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+	// Starting the game with all new refreshed hard coded boxes shuffled and resting
+        startGame();
+    }
+}
+
+// Modal Ends and the other starts
+
 // adding listner to the whole collection of cards for performance
 let cardsBox = document.getElementById('cards-box');
 
@@ -140,8 +170,3 @@ cardsBox.addEventListener('click', function (evt) {
     	setTimeout(checkForMatch, 800);
     }
 });
-
-// Starting the game with all new refreshed hard coded boxes shuffled and resting
-document.addEventListener("DOMContentLoaded", function(event) {
-    startGame();
-  });

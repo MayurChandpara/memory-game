@@ -13,6 +13,31 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 </head>
 <body>
+	<!-- Making the model to pop up in the starting to explain the rules of the game -->
+	<div class="modal" id="startModal">
+		<!-- The content of the modal -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4>Welcome to The Game of Memory!!!</h4>
+			</div>
+			<div class="modal-body">
+				<p>This game is made by Mayur Chandpara and Designed by Udacity Nanodegree. This is a project of my Nanodegree.<em>(Project 2: The Memory Game)</em></p>
+				<h5>The rules:</h5>
+				<ul>
+					<li>Clicking two different cards is a move.</li>
+					<li>You have 3 seconds to see all the cards.</li>
+					<li>Find all the matches in the least posible moves.</li>
+					<li>Stars change as per your score.</li>
+					<li>There is a timer for extra challange to yourself.</li>
+					<li>Best of luck.</li>
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button id="startButton">Start the Game!</button>
+			</div>
+		</div>
+	</div>
+
 	<!-- This container is the whole game body with the title and the score updates -->
 	<div class="container">
 		<!-- The top text sections -->
