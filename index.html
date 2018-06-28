@@ -37,6 +37,7 @@
 			</div>
 		</div>
 	</div>
+	<!-- Start Screen Modal Ends -->
 
 	<!-- This container is the whole game body with the title and the score updates -->
 	<div class="container">
@@ -108,6 +109,31 @@
 			</div>
 		</section>
 	</div>
+	<!-- Container ends here -->
+
+	<!-- Making the model to pop up when the game is won and giving the details -->
+	<div class="modal" id="winModal">
+		<!-- The content of the modal -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4>You Won The Game of Memory!!!</h4>
+			</div>
+			<div class="modal-body">
+				<p>Congratulation! you found all the matching cards. What you will like to do next?</p>
+				<h5>Checking Your stats:</h5>
+				<ul>
+					<li>Conftarulation Again!</li>
+					<li>Moves used: <em><span id="moves"></span>.</em></li>
+					<li>Time taken: <em><span id="timer"></span>.</em></li>
+					<li>Your score out of 3: <em><span id="score">.</span></em></li>
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button id="startButton">Start the Game!</button>
+			</div>
+		</div>
+	</div>
+	<!-- Start Screen Modal Ends -->
 	<script src="js/scripts.js"></script>
 </body>
 </html>

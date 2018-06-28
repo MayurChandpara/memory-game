@@ -1,4 +1,4 @@
-// The modal Js
+// The starting modal Js
 
 // Getting modal
 let modal = document.getElementById('startModal');
@@ -34,11 +34,14 @@ let cardsBox = document.getElementById('cards-box');
 //getting restart button
 let restart = document.getElementById('restart');
 
-//defining the moves variable
-let moves = 0;
+//defining the moves variable and score
+let moves = 0, score = 3;
 
 //defining variables for timer
 let done = '', sec = 0, trigger = '';
+
+// defining variables for wining the game
+let matchedCards = 0;
 
 //setting cariables to compare cards
 let card1 = ''; let card2 = '';
@@ -59,6 +62,7 @@ function startTimer () {
 }
 
 function timeCounter() {
+	console.log(matchedCards);
 	sec++;
 	let min = 0;
 	min = Math.floor(sec/60);
@@ -83,8 +87,42 @@ function startGame() {
 	//opening and closing the cards for the player to memorize
 	toggleCards();
 	setTimeout(toggleCards,3000);
-
+	// Starting the timer after the cards are done showing
 	setTimeout(startTimer,3000);
+	// reseting the matchedCards variable as the new game;
+	matchedCards = 0;
+}
+
+function gameWon() {
+	// When the game is won the another modal will appear
+console.log(moves,score,sec)
+	// The wining modal Js
+
+	// Getting modal
+	let winModal = document.getElementById('winModal');
+
+	// Get the button that closes the modal
+	let modalBtn = document.getElementById('startButton');
+
+	// When this function loads the modal pops in
+	    winModal.style.display = "block";
+
+	modalBtn.onclick = function(){
+		modal.style.display = "none";
+		// Starting the game with all new refreshed hard coded boxes shuffled and resting
+		startGame();
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+		// Starting the game with all new refreshed hard coded boxes shuffled and resting
+	        startGame();
+	    }
+	}
+
+	// Win Modal Ends Here
 }
 
 function failed () {
@@ -97,6 +135,10 @@ function failed () {
 function matched () {
 	card1.classList.add('match');
 	card2.classList.add('match');
+	matchedCards++;
+	if(matchedCards === 8){
+		gameWon();
+	}
 }
 
 function checkForMatch (){
