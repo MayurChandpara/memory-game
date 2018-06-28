@@ -7,11 +7,13 @@ let restart = document.getElementById('restart');
 //defining the moves variable
 let moves = 0;
 
+//defining variables for timer
+let done = '', sec = 0, trigger = '';
+
 //setting cariables to compare cards
 let card1 = ''; let card2 = '';
 
 function toggleCards() {
-	console.log("togglingCards");
 	let allCards = cardsBox.children;
 	for (let i = 0; i < allCards.length; i++) {
 		allCards[i].classList.toggle('open');
@@ -20,8 +22,27 @@ function toggleCards() {
 
 }
 
+function startTimer () {
+	if (timer) {
+		trigger = setInterval(timeCounter,1000);
+	}
+}
+
+function timeCounter() {
+	sec++;
+	let min = 0;
+	min = Math.floor(sec/60);
+	let left = sec%60;
+	document.getElementById('timer').innerHTML = " " + min + ":" + left;
+}
+
+function stopTimer() {
+	clearInterval(trigger);
+	sec = 0;
+	document.getElementById('timer').innerHTML = " " + min + ":" + sec;
+}
+
 function startGame() {
-	console.log("startGame");
 	// Resetting the moves counter
 	moves = 0;
 	document.getElementById('moves').innerHTML = moves;
@@ -32,6 +53,8 @@ function startGame() {
 	//opening and closing the cards for the player to memorize
 	toggleCards();
 	setTimeout(toggleCards,3000);
+
+	setTimeout(startTimer,3000);
 }
 
 function failed () {
@@ -91,6 +114,12 @@ restart.addEventListener('click', function () {
 		allCards[i].classList.remove('open');
 		allCards[i].classList.remove('show');
 	}
+
+	//opening and closing the cards for the player to memorize
+	toggleCards();
+	setTimeout(toggleCards,3000);
+	stopTimer();
+	setTimeout(startTimer,3000);
 });
 
 
@@ -114,6 +143,5 @@ cardsBox.addEventListener('click', function (evt) {
 
 // Starting the game with all new refreshed hard coded boxes shuffled and resting
 document.addEventListener("DOMContentLoaded", function(event) {
-    console.log("DOM fully loaded and parsed");
     startGame();
   });
