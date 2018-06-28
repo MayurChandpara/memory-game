@@ -35,10 +35,10 @@ let cardsBox = document.getElementById('cards-box');
 let restart = document.getElementById('restart');
 
 //defining the moves variable and score
-let moves = 0, score = 3;
+let moves = 0, score = 0;
 
 //defining variables for timer
-let done = '', sec = 0, trigger = '';
+let done = '', sec = 0, trigger = '',min = 0, left = 0;
 
 // defining variables for wining the game
 let matchedCards = 0;
@@ -62,11 +62,10 @@ function startTimer () {
 }
 
 function timeCounter() {
-	console.log(matchedCards);
 	sec++;
-	let min = 0;
+	min = 0;
 	min = Math.floor(sec/60);
-	let left = sec%60;
+	left = sec%60;
 	document.getElementById('timer').innerHTML = " " + min + ":" + left;
 }
 
@@ -80,7 +79,7 @@ function startGame() {
 	// Resetting the moves counter
 	moves = 0;
 	document.getElementById('moves').innerHTML = moves;
-	
+
 	// Shuffling the cards
 	shuffle();
 
@@ -94,23 +93,26 @@ function startGame() {
 }
 
 function gameWon() {
-	// When the game is won the another modal will appear
-console.log(moves,score,sec)
+  document.getElementById('score').innerHTML = " " + score + " Stars";
+  document.getElementById('moves2').innerHTML = moves + " Moves";
+  document.getElementById('timer2').innerHTML = min  + " Minutes And " + left + " Seconds" ;
+  // When the game is won the another modal will appear
+
 	// The wining modal Js
 
 	// Getting modal
 	let winModal = document.getElementById('winModal');
 
 	// Get the button that closes the modal
-	let modalBtn = document.getElementById('startButton');
+	let modalBtn = document.getElementById('restartButton');
 
 	// When this function loads the modal pops in
 	    winModal.style.display = "block";
 
 	modalBtn.onclick = function(){
-		modal.style.display = "none";
+		winModal.style.display = "none";
 		// Starting the game with all new refreshed hard coded boxes shuffled and resting
-		startGame();
+		restartFun();
 	}
 
 	// When the user clicks anywhere outside of the modal, close it
@@ -118,7 +120,7 @@ console.log(moves,score,sec)
 	    if (event.target == modal) {
 	        modal.style.display = "none";
 		// Starting the game with all new refreshed hard coded boxes shuffled and resting
-	        startGame();
+	        restartFun();
 	    }
 	}
 
@@ -145,11 +147,26 @@ function checkForMatch (){
 	if (card2 !== '' && card1 !== card2){
 
 		//increasing the moves and displaying
-        moves++;
-        document.getElementById('moves').innerHTML = moves;
-    	
+      moves++;
+      document.getElementById('moves').innerHTML = moves;
+
+      // Calculate the score the score will be as:
+      // used 10 moves to finish 3 stars and then for next 4 moves 2 stars and later 1 star
+
+    if (moves >= 0 && moves <11) {
+      score = 3;
+      document.getElementById('stars').innerHTML = "<li><i class=\"far fa-star\"></i></li><li><i class=\"far fa-star\"></i></li><li><i class=\"far fa-star\"></i></li>";
+    }else if(moves > 10 && moves <= 14){
+        score = 2;
+        document.getElementById('stars').innerHTML = "<li><i class=\"far fa-star\"></i></li><li><i class=\"far fa-star\"></i></li>";
+      }else if (moves > 14) {
+        score = 1;
+        document.getElementById('stars').innerHTML = "<li><i class=\"far fa-star\"></i></li>";
+      }
+      document.getElementById('score').innerHTML = score;
+
 	if (card1.innerHTML === card2.innerHTML) {
-	
+
 		matched();
 
 	}else {
@@ -157,9 +174,9 @@ function checkForMatch (){
 		failed();
 
 	}
-	
+
 	card2 = card1 = '';
-	
+
 	}
 }
 
@@ -170,29 +187,30 @@ function shuffle() {
     }
 }
 
-//Adding eventlistener to the restart button
-restart.addEventListener('click', function () {
-	// Resetting the moves counter
-	moves = 0;
-	document.getElementById('moves').innerHTML = moves;
-	
-	// Shuffling the cards
-	shuffle();
-	
-	// Remove the matched cards
-	let allCards = cardsBox.children;
-	for (let i = 0; i < allCards.length; i++) {
-		allCards[i].classList.remove('match');
-		allCards[i].classList.remove('open');
-		allCards[i].classList.remove('show');
-	}
+function restartFun() {
+  	// Resetting the moves counter
+  	moves = 0;
+  	document.getElementById('moves').innerHTML = moves;
 
-	//opening and closing the cards for the player to memorize
-	toggleCards();
-	setTimeout(toggleCards,3000);
-	stopTimer();
-	setTimeout(startTimer,3000);
-});
+  	// Shuffling the cards
+  	shuffle();
+
+  	// Remove the matched cards
+  	let allCards = cardsBox.children;
+  	for (let i = 0; i < allCards.length; i++) {
+  		allCards[i].classList.remove('match');
+  		allCards[i].classList.remove('open');
+  		allCards[i].classList.remove('show');
+  	}
+
+  	//opening and closing the cards for the player to memorize
+  	toggleCards();
+  	setTimeout(toggleCards,3000);
+  	stopTimer();
+  	setTimeout(startTimer,3000);
+}
+//Adding eventlistener to the restart button
+restart.addEventListener('click', restartFun() );
 
 
 //Adding eventlistener to the deck of cards

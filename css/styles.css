@@ -36,6 +36,7 @@ h1 {
 
 /* Modal Header */
 .modal-header {
+	text-align: center;
     padding: 2px 16px;
     background: linear-gradient(to right, rgb(143, 48, 207), rgb(19, 155, 236));
     color: white;
@@ -54,8 +55,17 @@ h1 {
 
 .modal-footer button {
     height: 45px;
-    background-color: #704CD7;
+    background-color: Transparent;
+		background-repeat: no-repeat;
     color: white;
+		border: none;
+		font-size: 1.2rem;
+}
+
+.modal-footer a {
+    text-decoration: none;
+    color: white;
+		margin-right: 10px;
 }
 
 /* Modal Content */

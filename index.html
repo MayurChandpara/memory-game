@@ -21,16 +21,20 @@
 				<h4>Welcome to The Game of Memory!!!</h4>
 			</div>
 			<div class="modal-body">
-				<p>This game is made by Mayur Chandpara and Designed by Udacity Nanodegree. This is a project of my Nanodegree.<em>(Project 2: The Memory Game)</em></p>
-				<h5>The rules:</h5>
+				<p>This game is made by <em>Mayur Chandpara</em> and Designed by <em>Udacity Nanodegree</em>.
+				Read the rules below to understand the game rules and click the start button
+				 to test your Memory. The game can only be played by mouse/pointing device.</p>
+				<h4>The rules:</h4>
 				<ul>
 					<li>Clicking two different cards is a move.</li>
-					<li>You have 3 seconds to see all the cards.</li>
-					<li>Find all the matches in the least posible moves.</li>
-					<li>Stars change as per your score.</li>
+					<li>You have 3 seconds to see and memorize all the cards.</li>
+					<li>Find all the matches in the least posible moves(lowest 8 possible).</li>
+					<li>Stars change as per your score depending on your moves and not time.</li>
 					<li>There is a timer for extra challange to yourself.</li>
-					<li>Best of luck.</li>
+					<li>Best of luck. See you on the other side.</li>
 				</ul>
+				<p>This is a project of my Web Developer Nanodegree.
+					<em>(Project 2: The Memory Game)</em>. Trying to make responsive as much as possible.</p>
 			</div>
 			<div class="modal-footer">
 				<button id="startButton">Start the Game!</button>
@@ -45,7 +49,7 @@
 		<header>
 			<h1>Memory <span>G</span>ame</h1>
 			<div class="game-details">
-				<ul class="stars">
+				<ul class="stars" id="stars">
 					<li><i class="far fa-star"></i></li>
 					<li><i class="far fa-star"></i></li>
 					<li><i class="far fa-star"></i></li>
@@ -119,17 +123,29 @@
 				<h4>You Won The Game of Memory!!!</h4>
 			</div>
 			<div class="modal-body">
-				<p>Congratulation! you found all the matching cards. What you will like to do next?</p>
-				<h5>Checking Your stats:</h5>
-				<ul>
-					<li>Conftarulation Again!</li>
-					<li>Moves used: <em><span id="moves"></span>.</em></li>
-					<li>Time taken: <em><span id="timer"></span>.</em></li>
-					<li>Your score out of 3: <em><span id="score">.</span></em></li>
-				</ul>
+				<p>Congratulation! you made it through and found all the matching cards possible.Liked it? then What you will like to do next? <em>Playing Again???</em></p>
+				<h4>Checking Your stats:</h4>
+
+				<table>
+					<tr>
+						<td>Moves used:</td>
+						<td><em><span id="moves2"></span>.</em></td>
+					</tr>
+					<tr>
+						<td>Time taken: </td>
+						<td><em><span id="timer2"></span>.</em></td>
+					</tr>
+					<tr>
+						<td>Your score:</td>
+						<td><em><span id="score">.</span></em></td>
+					</tr>
+				</table>
 			</div>
 			<div class="modal-footer">
-				<button id="startButton">Start the Game!</button>
+				<a href="https://www.google.com/"> Go to Google</a>
+				<a href="https://github.com/MayurChandpara">Check My github</a>
+				<a href="https://www.upwork.com/o/profiles/users/_~014f92c0c666163d27/">Find Me On Upwork</a>
+				<button id="restartButton">Play Again!</button>
 			</div>
 		</div>
 	</div>
