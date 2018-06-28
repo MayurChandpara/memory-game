@@ -39,7 +39,7 @@ function timeCounter() {
 function stopTimer() {
 	clearInterval(trigger);
 	sec = 0;
-	document.getElementById('timer').innerHTML = " " + min + ":" + sec;
+	document.getElementById('timer').innerHTML = "  0:0 ";
 }
 
 function startGame() {
