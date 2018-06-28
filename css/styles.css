@@ -42,7 +42,7 @@ h1 {
     display: inline-block;
 }
 
-.game-details .restart {
+.game-details #restart {
     float: right;
     cursor: pointer;
 }
@@ -50,7 +50,7 @@ h1 {
 /*
  * Styles for the deck of cards
  */
- .cards-box{
+ #cards-box{
  	width: 700px;
  	min-height: 720px;
 	background : linear-gradient(to right, rgb(143, 48, 207), rgb(19, 155, 236));
@@ -64,7 +64,7 @@ h1 {
     margin: 0 0 3em;
 }
 
-.cards-box .card{
+#cards-box .card{
 	height: 150px;
     width: 150px;
     background: #704CD7;
@@ -78,17 +78,17 @@ h1 {
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
-.cards-box .card.open {
+#cards-box .card.open {
     transform: rotateY(0);
     background: #238EE9;
     cursor: default;
 }
 
-.cards-box .card.show {
+#cards-box .card.show {
     font-size: 33px;
 }
 
-.cards-box .card.match {
+#cards-box .card.match {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
