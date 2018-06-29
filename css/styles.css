@@ -60,6 +60,7 @@ h1 {
     color: white;
 		border: none;
 		font-size: 1.2rem;
+		cursor: pointer;
 }
 
 .modal-footer a {
@@ -81,7 +82,7 @@ h1 {
     animation-duration: 0.4s
 }
 
-/* Add Animation */
+/* Add Animation to Modal */
 @keyframes animatetop {
     from {top: -300px; opacity: 0}
     to {top: 0; opacity: 1}
@@ -133,7 +134,7 @@ h1 {
 }
 
 #cards-box .card{
-	height: 150px;
+		height: 150px;
     width: 150px;
     background: #704CD7;
     font-size: 0;
@@ -144,11 +145,15 @@ h1 {
     justify-content: center;
     align-items: center;
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+
+		transition-property: transform;
+		transform-style: preserve-3d;
+		transition-duration: 1s;
 }
 
 #cards-box .card.open {
-    transform: rotateY(0);
-    background: #238EE9;
+    transform: rotateY(180deg);
+		background: #238EE9;
     cursor: default;
 }
 

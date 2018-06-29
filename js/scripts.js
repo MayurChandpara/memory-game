@@ -145,14 +145,12 @@ function matched () {
 
 function checkForMatch (){
 	if (card2 !== '' && card1 !== card2){
-
 		//increasing the moves and displaying
       moves++;
       document.getElementById('moves').innerHTML = moves;
 
-      // Calculate the score the score will be as:
-      // used 10 moves to finish 3 stars and then for next 4 moves 2 stars and later 1 star
-
+    // Calculate the score the score will be as:
+    // used 10 moves to finish 3 stars and then for next 4 moves 2 stars and later 1 star
     if (moves >= 0 && moves <11) {
       score = 3;
       document.getElementById('stars').innerHTML = "<li><i class=\"far fa-star\"></i></li><li><i class=\"far fa-star\"></i></li><li><i class=\"far fa-star\"></i></li>";
@@ -177,7 +175,9 @@ function checkForMatch (){
 
 	card2 = card1 = '';
 
-	}
+} else if (card1 === card2) {
+  card1 = card2 = '';
+}
 }
 
 function shuffle() {
@@ -188,6 +188,9 @@ function shuffle() {
 }
 
 function restartFun() {
+    // Changing matchedCards to zero
+    matchedCards = 0;
+
   	// Resetting the moves counter
   	moves = 0;
   	document.getElementById('moves').innerHTML = moves;
@@ -209,14 +212,19 @@ function restartFun() {
   	stopTimer();
   	setTimeout(startTimer,3000);
 }
+
+
 //Adding eventlistener to the restart button
-restart.addEventListener('click', restartFun() );
+restart.addEventListener('click', restartFun);
 
 
 //Adding eventlistener to the deck of cards
 cardsBox.addEventListener('click', function (evt) {
 	const card = evt.target;
-    if (card.nodeName === 'DIV') {  // ← verifies target is div of card
+
+console.log("Start:",card1,card2);
+
+    if (card.nodeName === 'DIV' && !card.classList.contains("match")) {  // ← verifies target is div of card
     	// toggles open and show class to display cards
         card.classList.toggle('open');
         card.classList.toggle('show');
@@ -227,6 +235,8 @@ cardsBox.addEventListener('click', function (evt) {
     	} else if ( card1 !== ''){
     		card2 = card;
     	}
-    	setTimeout(checkForMatch, 800);
+      console.log("before check:",card1,card2);
+    	checkForMatch();
+      console.log("after check:",card1,card2);
     }
 });
