@@ -146,6 +146,7 @@ h1 {
     align-items: center;
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 
+/* Giving the transform information to be preserved and to give a nice transition */
 		transition-property: transform;
 		transform-style: preserve-3d;
 		transition-duration: 1s;
@@ -153,16 +154,44 @@ h1 {
 
 #cards-box .card.open {
     transform: rotateY(180deg);
+		font-size: 33px;
 		background: #238EE9;
     cursor: default;
 }
 
-#cards-box .card.show {
-    font-size: 33px;
-}
-
-#cards-box .card.match {
+#cards-box .card.matched {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
+
+		/* Start the bounce animation */
+	 animation: bounce 0.5s;
+}
+
+#cards-box .card.failed {
+	cursor: default;
+	background: #704CD7;
+	font-size: 0;
+
+	/* Start the shake animation */
+ animation: shake 1s;
+
+}
+
+/* Defining the animation keyframes of the shake and the bounce animations */
+
+@keyframes shake {
+   0% { transform: translate(20px, 0px); background-color: #FC6600; font-size: 33px; }
+  25% { transform: translate(-20px, 0px); background-color: #FC6600; font-size: 33px; }
+  50% { transform: translate(20px, 0px); background-color: #FC6600; font-size: 33px;}
+  75% { transform: translate(-20px, 0px); background-color: #FC6600; font-size: 33px;}
+ 100% { transform: translate(0px, 0px) rotateY(180deg); }
+}
+
+@keyframes bounce {
+ 0% { transform: scaleY(0.8); }
+ 25% { transform: scaleY(1.1); }
+ 50% { transform: scaleY(1.2);}
+ 75% { transform: scaleY(0.9); }
+ 100% { transform: scaleY(1);}
 }

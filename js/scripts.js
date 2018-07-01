@@ -40,6 +40,9 @@ let moves = 0, score = 0;
 //defining variables for timer
 let done = '', sec = 0, trigger = '',min = 0, left = 0;
 
+//trigger2 var for delay in Animation
+let trigger2 = '', cond = 0;
+
 // defining variables for wining the game
 let matchedCards = 0;
 
@@ -50,15 +53,13 @@ function toggleCards() {
 	let allCards = cardsBox.children;
 	for (let i = 0; i < allCards.length; i++) {
 		allCards[i].classList.toggle('open');
-		allCards[i].classList.toggle('show');
+
 	}
 
 }
 
 function startTimer () {
-	if (timer) {
 		trigger = setInterval(timeCounter,1000);
-	}
 }
 
 function timeCounter() {
@@ -127,16 +128,32 @@ function gameWon() {
 	// Win Modal Ends Here
 }
 
+
+// Removing failed cards from everywhere
+function removeFailed() {
+
+  let allCards = cardsBox.children;
+  for (let i = 0; i < allCards.length; i++) {
+    allCards[i].classList.remove('failed');
+  }
+}
+
 function failed () {
-	card1.classList.toggle('open');
-	card1.classList.toggle('show');
-	card2.classList.toggle('open');
-	card2.classList.toggle('show');
+  card1.classList.add('failed');
+	card2.classList.add('failed');
+
+  card1.classList.remove('open');
+
+	card2.classList.remove('open');
+
 }
 
 function matched () {
-	card1.classList.add('match');
-	card2.classList.add('match');
+	card1.classList.add('matched');
+	card2.classList.add('matched');
+  card1.classList.remove('open');
+	card2.classList.remove('open');
+
 	matchedCards++;
 	if(matchedCards === 8){
 		gameWon();
@@ -145,6 +162,7 @@ function matched () {
 
 function checkForMatch (){
 	if (card2 !== '' && card1 !== card2){
+
 		//increasing the moves and displaying
       moves++;
       document.getElementById('moves').innerHTML = moves;
@@ -198,12 +216,12 @@ function restartFun() {
   	// Shuffling the cards
   	shuffle();
 
-  	// Remove the matched cards
+  	// Remove the matched, failed and opened cards
   	let allCards = cardsBox.children;
   	for (let i = 0; i < allCards.length; i++) {
-  		allCards[i].classList.remove('match');
+  		allCards[i].classList.remove('matched');
   		allCards[i].classList.remove('open');
-  		allCards[i].classList.remove('show');
+      allCards[i].classList.remove('failed');
   	}
 
   	//opening and closing the cards for the player to memorize
@@ -222,12 +240,13 @@ restart.addEventListener('click', restartFun);
 cardsBox.addEventListener('click', function (evt) {
 	const card = evt.target;
 
-console.log("Start:",card1,card2);
+    if (card.nodeName === 'DIV' && !card.classList.contains("matched")) {  // ← verifies target is div of card and also the card is not already matched
 
-    if (card.nodeName === 'DIV' && !card.classList.contains("match")) {  // ← verifies target is div of card
-    	// toggles open and show class to display cards
+      // remoe all failed cards
+      removeFailed();
+
+      // toggles open and show class to display cards
         card.classList.toggle('open');
-        card.classList.toggle('show');
 
     	//checking and sending for comparing
     	if (card1 === ''){
@@ -235,8 +254,6 @@ console.log("Start:",card1,card2);
     	} else if ( card1 !== ''){
     		card2 = card;
     	}
-      console.log("before check:",card1,card2);
     	checkForMatch();
-      console.log("after check:",card1,card2);
     }
 });
