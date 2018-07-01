@@ -97,6 +97,12 @@ function gameWon() {
   document.getElementById('score').innerHTML = " " + score + " Stars";
   document.getElementById('moves2').innerHTML = moves + " Moves";
   document.getElementById('timer2').innerHTML = min  + " Minutes And " + left + " Seconds" ;
+
+  // the above same procedure for giing the stats to the optional Modal
+  document.getElementById('score3').innerHTML = " " + score + " Stars";
+  document.getElementById('moves3').innerHTML = moves + " Moves";
+  document.getElementById('timer3').innerHTML = min  + " Minutes And " + left + " Seconds" ;
+
   // When the game is won the another modal will appear
 
 	// The wining modal Js
@@ -257,3 +263,36 @@ cardsBox.addEventListener('click', function (evt) {
     	checkForMatch();
     }
 });
+
+// The optional modal Js
+
+// Getting modal
+let optModal = document.getElementById('optModal');
+
+// Get the button that closes the modal
+let playAgainBtn = document.getElementById('playAgain');
+
+// Get the button that will open the modal and use it to pop in
+let clickHereBtn = document.getElementById('clickHere');
+
+    clickHereBtn.onclick = function () {
+      optModal.style.display = "block";
+      winModal.style.display = "none";
+    }
+
+playAgainBtn.onclick = function(){
+	optModal.style.display = "none";
+  // Starting the game with all new refreshed hard coded boxes shuffled and resting
+  restartFun();
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+        // Starting the game with all new refreshed hard coded boxes shuffled and resting
+        restartFun();
+    }
+}
+
+// Optional Modal Ends and the other starts

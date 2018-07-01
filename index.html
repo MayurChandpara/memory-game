@@ -44,7 +44,7 @@
 	<!-- Start Screen Modal Ends -->
 
 	<!-- This container is the whole game body with the title and the score updates -->
-	<div class="container">
+	<main class="container">
 		<!-- The top text sections -->
 		<header>
 			<h1>Memory <span>G</span>ame</h1>
@@ -54,7 +54,7 @@
 					<li><i class="far fa-star"></i></li>
 					<li><i class="far fa-star"></i></li>
 				</ul>
-				<strong><span id="moves">0</span> Moves Timer: <span id="timer"> 0:0</span></strong>
+				<strong><span class="moves"><span id="moves">0</span> Moves</span> / <span class="timer"> Time: <span id="timer"> 0:0</span></span></strong>
 				<div id="restart">
 					<i class="fas fa-redo"></i>
 				</div>
@@ -112,8 +112,21 @@
 				<i class="fas fa-balance-scale"></i>
 			</div>
 		</section>
-	</div>
+	</main>
 	<!-- Container ends here -->
+
+	<!-- Optional Modal -->
+	<div class="optModal" id="optModal">
+		<div class="optModal-content">
+			<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+			<h1>Congratulations! You Won!</h1>
+			<p>With <span id="moves3"></span> moves and <span id="score3"></span>.</p>
+			<p>In <span id="timer3"></span>.</p>
+			<p>Yeaahhhh!!!!</p>
+			<button type="button" name="button" id="playAgain">Play Again</button>
+		</div>
+	</div>
+	<!-- optional modal ends here -->
 
 	<!-- Making the model to pop up when the game is won and giving the details -->
 	<div class="modal" id="winModal">
@@ -124,6 +137,8 @@
 			</div>
 			<div class="modal-body">
 				<p>Congratulation! you made it through and found all the matching cards possible.Liked it? then What you will like to do next? <em>Playing Again???</em></p>
+				<p>I also made another modal with the same morkup given in the screen record in the project description, go check it.</p>
+				<button type="button" name="button" id="clickHere">Click Here!</button>
 				<h4>Checking Your stats:</h4>
 
 				<table>

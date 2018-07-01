@@ -7,18 +7,6 @@ body {
 	font-size: 1.15em;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-h1 {
-	text-align: center;
-    font-weight: bold;
-}
-
 /*Styles for the modal
  for the description of the Game*/
 
@@ -78,6 +66,8 @@ h1 {
     border: 1px solid #888;
     width: 80%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+
+		/* Animating the modal box from top */
     animation-name: animatetop;
     animation-duration: 0.4s
 }
@@ -88,18 +78,76 @@ h1 {
     to {top: 0; opacity: 1}
 }
 
+/* Start modal ends here */
+
+/* Stylings for the OptionalModal */
+
+.optModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: white; /* Complete white */
+}
+
+.optModal-content button {
+		border: none;
+		cursor: pointer;
+		width: 100px;
+		font-size: 1rem;
+    text-decoration: none;
+    color: white;
+		background-color: #00B8A7;
+		padding: 10px;
+}
+
+/* Modal Content */
+.optModal-content {
+	text-align: center;
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    width: 90%;
+}
+
+/* Modal ends here */
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+header {
+	width: 100%;
+	max-width: 720px;
+}
+
+h1 {
+	text-align: center;
+    font-weight: bold;
+}
+
 
 /*
  * Styles for the Game Details
  */
 
 .game-details {
-    text-align: left;
-    width: 345px;
+    text-align: center;
+    width: 100%;
     margin-bottom: 10px;
 }
 
 .game-details .stars {
+	width: 24%;
     margin: 0;
     padding: 0;
     display: inline-block;
@@ -111,7 +159,16 @@ h1 {
     display: inline-block;
 }
 
+.game-details .moves {
+	width: 24%;
+}
+
+.game-details .timer {
+	width: 24%;
+}
+
 .game-details #restart {
+	width: 24%;
     float: right;
     cursor: pointer;
 }
@@ -120,22 +177,21 @@ h1 {
  * Styles for the deck of cards
  */
  #cards-box{
- 	width: 700px;
- 	min-height: 720px;
-	background : linear-gradient(to right, rgb(143, 48, 207), rgb(19, 155, 236));
-	padding: 32px;
+	 	width: 100%;
+		max-width: 720px;
+		background : linear-gradient(to right, rgb(143, 48, 207), rgb(19, 155, 236));
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    margin: 0 0 3em;
 }
 
 #cards-box .card{
+		margin: 20px 0 20px 0;
+		width: 150px;
 		height: 150px;
-    width: 150px;
     background: #704CD7;
     font-size: 0;
     color: #ffffff;
@@ -194,4 +250,132 @@ h1 {
  50% { transform: scaleY(1.2);}
  75% { transform: scaleY(0.9); }
  100% { transform: scaleY(1);}
+}
+
+
+/* Css for the tick mark in the optional modal */
+.checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: #7ac142;
+  fill: none;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  margin: 10% auto;
+  box-shadow: inset 0px 0px 0px #7ac142;
+  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.checkmark__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes scale {
+  0%, 100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 30px #7ac142;
+  }
+}
+
+/* Tickmark css ends here */
+
+/* Adding responsive changes to the card deck to the vast varieties of the devices */
+
+@media only Screen and (max-width: 675px){
+	#cards-box .card{
+		width: 140px;
+		height: 140px;
+	}
+}
+
+@media only Screen and (max-width: 630px){
+	#cards-box .card{
+		width: 130px;
+		height: 130px;
+	}
+}
+
+@media only Screen and (max-width: 560px){
+	#cards-box .card{
+		width: 120px;
+		height: 120px;
+		margin: 10px 0 10px 0;
+	}
+}
+
+@media only Screen and (max-width: 530px){
+	#cards-box .card{
+		width: 110px;
+		height: 110px;
+	}
+
+	.modal {
+		font-size: 1rem;
+	}
+
+	.optModal {
+		font-size: 1rem;
+	}
+
+	header {
+		font-size: 1rem;
+	}
+}
+
+@media only Screen and (max-width: 480px){
+	#cards-box .card{
+		width: 100px;
+		height: 100px;
+	}
+}
+
+@media only Screen and (max-width: 430px){
+	#cards-box .card{
+		width: 90px;
+		height: 90px;
+	}
+}
+
+@media only Screen and (max-width: 390px){
+	#cards-box .card{
+		width: 80px;
+		height: 80px;
+	}
+
+	.modal {
+		font-size: 0.8rem;
+	}
+}
+
+@media only Screen and (max-width: 350px){
+	#cards-box .card{
+		width: 70px;
+		height: 70px;
+	}
 }
