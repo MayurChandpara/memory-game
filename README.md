@@ -26,7 +26,7 @@ The project uses two dependencies for the use of icons & fonts in the cards:
 Anyone who like can use the app. The game is usable by any person without age restrictions.
 
 ## Demo
-Check the live version of the app : 
+Check the live version of the app : https://mayurchandpara.github.io/memory-game/
 
 ## Contributing
 Open an issue first to discuss potential changes/additions.
