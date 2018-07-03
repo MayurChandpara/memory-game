@@ -49,19 +49,22 @@ let matchedCards = 0;
 //setting cariables to compare cards
 let card1 = ''; let card2 = '';
 
+// Definig toggleCards function to open and close the cards for few seconds to memorize
 function toggleCards() {
 	let allCards = cardsBox.children;
 	for (let i = 0; i < allCards.length; i++) {
 		allCards[i].classList.toggle('open');
-
+    allCards[i].classList.toggle('disable');
 	}
 
 }
 
+// defining function for timer to start
 function startTimer () {
 		trigger = setInterval(timeCounter,1000);
 }
 
+// defining  function to count the seconds and displaying into min:sec form
 function timeCounter() {
 	sec++;
 	min = 0;
@@ -72,11 +75,15 @@ function timeCounter() {
    }else {document.getElementById('timer').innerHTML = " 0:0 ";}
 }
 
+// defining function with trigger to stop timer
 function stopTimer() {
 	clearInterval(trigger);
 	sec = -3;
 	document.getElementById('timer').innerHTML = "  0:0 ";
 }
+
+// defining function to complete all the starting checks before the game
+// reseting moves shuffling cards showing the cards for few seconds etc.
 
 function startGame() {
 	// Resetting the moves counter
@@ -95,6 +102,7 @@ function startGame() {
 	matchedCards = 0;
 }
 
+// defining the function to win conditions and making the modal ready to display the stats
 function gameWon() {
   document.getElementById('score').innerHTML = " " + score + " Stars";
   document.getElementById('moves2').innerHTML = moves + " Moves";
@@ -105,9 +113,7 @@ function gameWon() {
   document.getElementById('moves3').innerHTML = moves + " Moves";
   document.getElementById('timer3').innerHTML = min  + " Minutes And " + left + " Seconds" ;
 
-  // When the game is won the another modal will appear
-
-	// The wining modal Js
+  // When the game is won the another modal will appear (The wining modal Js)
 
 	// Getting modal
 	let winModal = document.getElementById('winModal');
@@ -146,28 +152,32 @@ function removeFailed() {
   }
 }
 
+// WHen the cards do not matched this function is run to add failed class and remove open class
 function failed () {
   card1.classList.add('failed');
 	card2.classList.add('failed');
-
   card1.classList.remove('open');
-
 	card2.classList.remove('open');
 
 }
 
+// When the cards do match this function adds the class matched to the card and removes the open card
 function matched () {
 	card1.classList.add('matched');
 	card2.classList.add('matched');
   card1.classList.remove('open');
 	card2.classList.remove('open');
 
+// Adding the number of matches of cards
 	matchedCards++;
+  // Checking for the game wining condition and triggers the wining function
 	if(matchedCards === 8){
 		gameWon();
 	}
 }
 
+// THis function checks that is two cards opend or are they the same card
+// Then this function will increase the moves determine the score and check the cards if they are matching
 function checkForMatch (){
 	if (card2 !== '' && card1 !== card2){
 
@@ -199,13 +209,15 @@ function checkForMatch (){
 
 	}
 
+  // After checking the cards making the cariables ready to get other two cards to compare
 	card2 = card1 = '';
 
-} else if (card1 === card2) {
+} else if (card1 === card2) { //if the same card is clicked then the cards are made ready for other pair
   card1 = card2 = '';
 }
 }
 
+// This function uses the nodal method to make an array and then suffle and again adding to the DOM
 function shuffle() {
     let divs = Array.prototype.slice.call(cardsBox.childNodes);  //Converted to array the nodal list
     while (divs.length) {
@@ -213,6 +225,7 @@ function shuffle() {
     }
 }
 
+// Defining a function to call when the resseting is required
 function restartFun() {
     // Changing matchedCards to zero
     matchedCards = 0;
@@ -245,11 +258,13 @@ function restartFun() {
 }
 
 
-//Adding eventlistener to the restart button
+//Adding eventlistener to the restart button and linking it to the restartFun function
 restart.addEventListener('click', restartFun);
 
 
-//Adding eventlistener to the deck of cards
+//Adding eventlistener to the deck of cards so when the card is clicked its
+// We will trace it by target and add to cariables to send to compare.
+
 cardsBox.addEventListener('click', function (evt) {
 	const card = evt.target;
 
@@ -271,7 +286,7 @@ cardsBox.addEventListener('click', function (evt) {
     }
 });
 
-// The optional modal Js
+// The optional modal Js this modal is made as the modal shown in the video of the project descriptions
 
 // Getting modal
 let optModal = document.getElementById('optModal');

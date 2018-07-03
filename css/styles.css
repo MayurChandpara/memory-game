@@ -224,6 +224,12 @@ h1 {
 	 animation: bounce 0.5s;
 }
 
+/* Do not allow to click when the cards are shown for first 3 seconds */
+#cards-box .card.disable {
+	cursor: not-allowed;
+	pointer-events: none;
+}
+
 #cards-box .card.failed {
 	cursor: default;
 	background: #704CD7;
