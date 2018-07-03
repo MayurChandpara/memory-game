@@ -38,10 +38,10 @@ let restart = document.getElementById('restart');
 let moves = 0, score = 0;
 
 //defining variables for timer
-let done = '', sec = 0, trigger = '',min = 0, left = 0;
+let done = '', sec = -3, trigger = '',min = 0, left = 0; //Initialising -3 seconds to fix the bug caused due to using timer function in settimeout
 
-//trigger2 var for delay in Animation
-let trigger2 = '', cond = 0;
+//trigger2
+let trigger2 = '';
 
 // defining variables for wining the game
 let matchedCards = 0;
@@ -67,12 +67,14 @@ function timeCounter() {
 	min = 0;
 	min = Math.floor(sec/60);
 	left = sec%60;
-	document.getElementById('timer').innerHTML = " " + min + ":" + left;
+  if(sec > -1){
+	   document.getElementById('timer').innerHTML = " " + min + ":" + left;
+   }else {document.getElementById('timer').innerHTML = " 0:0 ";}
 }
 
 function stopTimer() {
 	clearInterval(trigger);
-	sec = 0;
+	sec = -3;
 	document.getElementById('timer').innerHTML = "  0:0 ";
 }
 
@@ -88,7 +90,7 @@ function startGame() {
 	toggleCards();
 	setTimeout(toggleCards,3000);
 	// Starting the timer after the cards are done showing
-	setTimeout(startTimer,3000);
+	startTimer();
 	// reseting the matchedCards variable as the new game;
 	matchedCards = 0;
 }
@@ -215,6 +217,9 @@ function restartFun() {
     // Changing matchedCards to zero
     matchedCards = 0;
 
+    // Solving the bug for cards carried to the next game after reseting
+    card1 = card2 = '';
+
   	// Resetting the moves counter
   	moves = 0;
   	document.getElementById('moves').innerHTML = moves;
@@ -231,10 +236,12 @@ function restartFun() {
   	}
 
   	//opening and closing the cards for the player to memorize
+    // and cancle the previous 3 sec if reset again in the first 3 seconds
+    clearTimeout(trigger2);
   	toggleCards();
-  	setTimeout(toggleCards,3000);
+  	trigger2 = setTimeout(toggleCards,3000);
   	stopTimer();
-  	setTimeout(startTimer,3000);
+  	startTimer();
 }
 
 
