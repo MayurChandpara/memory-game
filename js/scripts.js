@@ -233,9 +233,11 @@ function restartFun() {
     // Solving the bug for cards carried to the next game after reseting
     card1 = card2 = '';
 
-  	// Resetting the moves counter
+  	// Resetting the moves counter and the score too
   	moves = 0;
   	document.getElementById('moves').innerHTML = moves;
+    score = 3;
+    document.getElementById('stars').innerHTML = "<li><i class=\"far fa-star\"></i></li><li><i class=\"far fa-star\"></i></li><li><i class=\"far fa-star\"></i></li>";
 
   	// Shuffling the cards
   	shuffle();
